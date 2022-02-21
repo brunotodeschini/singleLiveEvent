@@ -14,17 +14,10 @@ class SharedViewModel: ViewModel() {
     val shouldNavigate: LiveData<Boolean>
     get() = validateIfShouldGoToSecondFragment
 
-    private val singleLiveEventValidateIfShouldGoToSecondFragment = SingleLiveEvent<Boolean>()
-    val singleLiveEventShouldNavigate: SingleLiveEvent<Boolean>
-        get() = singleLiveEventValidateIfShouldGoToSecondFragment
-
-
-
     fun makeFakeRequest() {
         viewModelScope.launch(Dispatchers.IO) {
             Thread.sleep(3000)
             validateIfShouldGoToSecondFragment.postValue(true)
-            singleLiveEventValidateIfShouldGoToSecondFragment.postValue(true)
         }
     }
 }
