@@ -34,12 +34,6 @@ class FirstFragment : Fragment() {
     }
 
     private fun verifyIfShouldNavigate() {
-//        sharedViewModel.shouldNavigate.observe(this) {
-//            if (it) {
-//                findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
-//                sharedViewModel.shouldNavigate.removeObservers(this)
-//            }
-//        }
 
         sharedViewModel.singleLiveEventShouldNavigate.observe(this) {
             if (it) {

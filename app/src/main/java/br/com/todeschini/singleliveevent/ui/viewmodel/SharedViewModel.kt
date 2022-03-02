@@ -10,10 +10,6 @@ import kotlinx.coroutines.launch
 
 class SharedViewModel: ViewModel() {
 
-    private val validateIfShouldGoToSecondFragment = MutableLiveData<Boolean>()
-    val shouldNavigate: LiveData<Boolean>
-    get() = validateIfShouldGoToSecondFragment
-
     private val singleLiveEventValidateIfShouldGoToSecondFragment = SingleLiveEvent<Boolean>()
     val singleLiveEventShouldNavigate: SingleLiveEvent<Boolean>
         get() = singleLiveEventValidateIfShouldGoToSecondFragment
@@ -23,7 +19,6 @@ class SharedViewModel: ViewModel() {
     fun makeFakeRequest() {
         viewModelScope.launch(Dispatchers.IO) {
             Thread.sleep(3000)
-            validateIfShouldGoToSecondFragment.postValue(true)
             singleLiveEventValidateIfShouldGoToSecondFragment.postValue(true)
         }
     }
